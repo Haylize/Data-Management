@@ -43,7 +43,7 @@ Organisation recommandée du dépôt :
 
     Data-Management/
     │
-    ├── README.md        # Contient le lien vers le dataset (CSV stocké sur Drive)
+    ├── README.md        # Contient le lien vers le dataset 
     │
     ├── notebook/
     │   └── notebook_dm.ipynb        # Notebook Jupyter pour l’analyse exploratoire et le data management
