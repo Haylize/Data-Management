@@ -40,14 +40,6 @@ def dataset_page(df: pd.DataFrame) -> None:
         use_container_width=True,
     )
 
-    # --- Valeurs manquantes ---
-    st.subheader("❗ Valeurs manquantes")
-    missing_df = pd.DataFrame({
-        "Missing count": df.isna().sum(),
-        "Missing (%)": (df.isna().mean() * 100).round(2),
-    }).sort_values("Missing (%)", ascending=False)
-
-    st.dataframe(missing_df, use_container_width=True)
 
     # --- Stats descriptives ---
     st.subheader("📈 Statistiques descriptives (numériques)")
