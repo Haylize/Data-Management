@@ -60,7 +60,7 @@ def build_wordcloud(
 def wordcloud_page() -> None:
     st.header("☁️ WordCloud — Article OMS")
 
-    # ⚠️ adapte ce chemin à ton projet
+    # chemin
     TEXT_PATH = "data/article_oms.txt"
 
     try:
