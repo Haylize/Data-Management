@@ -84,7 +84,7 @@ def graphs_page(df: pd.DataFrame) -> None:
     # ==================================================
     # 3. Coût total par catégorie
     # ==================================================
-    st.subheader("💰 Coût total estimé par catégorie")
+    st.subheader("💰 Coût total estimé par type de maladie")
 
     fdf = fdf.copy()
     fdf["Total Cost"] = (
