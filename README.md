@@ -42,7 +42,6 @@ app_v2/
 ├── page_dataset.py
 ├── page_graph.py
 ├── page_wordcloud.py
-├── requirements.txt
 └── data/
     └── (le fichier CSV doit être ajouté ici en local)
 ```
