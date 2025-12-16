@@ -54,9 +54,9 @@ Data-Management/
 ## 🖼️ Aperçu de l'Application
 
 ![Page d'accueil](Image/page_1.png)
-![Visualisations](Image/page2a.png)
+![Visualisations](Image/page_2a.png)
 ![Visualisations](Image/page2b.png)
-![Wordcloud](Image/page3.png)
+![Wordcloud](Image/page_3.png)
 
 ---
 
