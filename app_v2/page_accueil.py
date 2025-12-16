@@ -5,7 +5,7 @@ from page_dataset import dataset_page
 from page_wordcloud import wordcloud_page
 from page_graph import graphs_page
 
-
+# Configuration générale de la page Streamlit
 st.set_page_config(
     page_title="Global Health Dashboard",
     page_icon="🌍",
@@ -27,7 +27,7 @@ l’analyse se concentre sur :
 
 DATA_PATH = "data/healthstatistics.csv"
 
-
+# Mise en cache du chargement des données
 @st.cache_data(show_spinner=False)
 def load_data(path: str) -> pd.DataFrame:
     return pd.read_csv(path)
@@ -36,16 +36,19 @@ def load_data(path: str) -> pd.DataFrame:
 try:
     df = load_data(DATA_PATH)
 except FileNotFoundError:
+    # Message d’erreur si le fichier n’est pas trouvé
     st.error(f"Fichier introuvable : {DATA_PATH}")
+    # Arrêt de l’application pour éviter des erreurs ensuite
     st.stop()
 
-
+# Barre latérale
 st.sidebar.title("🧭 Navigation")
 page = st.sidebar.radio(
     "Aller à :",
     ["📊 Dataset", "📈 Visualisations", "☁️ WordCloud"],
 )
 
+# Affichage de la page sélectionnée
 if page == "📊 Dataset":
     dataset_page(df)
 elif page == "📈 Visualisations":
