@@ -73,6 +73,7 @@ cd Data-Management/app_v2
 ⚠️ Le jeu de données n’est pas inclus dans le dépôt (taille trop importante).
 Télécharger le dataset depuis Kaggle :
 https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics?resource=download
+
 Placer le fichier suivant dans le dossier :
 ```bash
 app_v2/data/Global Health Statistics.csv
