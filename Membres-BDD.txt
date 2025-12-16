@@ -1,0 +1,7 @@
+Membres du groupe :
+Antoine Thepault
+Leslie Tagne
+Elise Prigent
+
+Lien du jeu de donnée :
+https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics?resource=download
