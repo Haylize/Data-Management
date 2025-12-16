@@ -51,10 +51,20 @@ Data-Management/
 ```
 
 ---
+## 🖼️ Aperçu de l'Application
+
+
+
+
+
+
+
+
+---
 
 ## ⚙️ Installation & environnement
 
-### 1️⃣ Cloner le dépôt
+###  Cloner le dépôt
 
 ```bash
 git clone https://github.com/Haylize/Data-Management.git
