@@ -37,14 +37,17 @@ Le dataset contient des informations sur :
 ## 📁 Structure du projet
 
 ```plaintext
-app_v2/
-├── page_accueil.py
-├── page_dataset.py
-├── page_graph.py
-├── page_wordcloud.py
+Data-Management/
+├── README.md
 ├── requirements.txt
-└── data/
-    └── (le fichier CSV doit être ajouté ici en local)
+└── app_v2/
+    ├── page_accueil.py
+    ├── page_dataset.py
+    ├── page_graph.py
+    ├── page_wordcloud.py
+    └── data/
+        ├── article_oms.txt
+        └── (Global Health Statistics.csv → en local seulement)
 ```
 
 ---
