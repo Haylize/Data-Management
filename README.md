@@ -34,7 +34,6 @@ Le dataset contient des informations sur :
 - Des variables socio-économiques (Per Capita Income, Education Index, Urbanization Rate, etc.)
 
 ---
-```markdown
 ## 📁 Structure du projet
 
 ```plaintext
@@ -46,7 +45,7 @@ app_v2/
 ├── requirements.txt
 └── data/
     └── (le fichier CSV doit être ajouté ici en local)
-
+```
 
 ---
 
@@ -57,7 +56,7 @@ app_v2/
 ```bash
 git clone https://github.com/Haylize/Data-Management.git
 cd Data-Management/app_v2
-
+```
 ### Dataset (obligatoire)
 
 ⚠️ Le jeu de données n’est pas inclus dans le dépôt (taille trop importante).
@@ -66,9 +65,10 @@ https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics?resource
 Placer le fichier suivant dans le dossier :
 ```bash
 app_v2/data/Global Health Statistics.csv
-
+```
 ### Lancer l'application Streamlit : 
 
 Depuis le dossier app_v2 :
 ```bash
 streamlit run page_accueil.py
+```
