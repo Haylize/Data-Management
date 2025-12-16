@@ -24,8 +24,6 @@ Le projet comprend :
 
 Le fichier CSV n’est pas inclus dans ce dépôt car il dépasse la limite de taille de GitHub.
 
-📌 **Lien de téléchargement du dataset :**  
-👉 : https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics?resource=download
 Le dataset contient des informations sur :
 
 - Les pays
@@ -37,46 +35,40 @@ Le dataset contient des informations sur :
 
 ---
 
-## 🗂️ Structure du projet
+## 📁 Structure du projet
 
-Organisation recommandée du dépôt :
+```plaintext
+app_v2/
+│
+├── page_accueil.py
+├── page_dataset.py
+├── page_graph.py
+├── page_wordcloud.py
+└── data/
+    └── (le fichier CSV doit être ajouté ici en local)
 
-    Data-Management/
-    │
-    ├── README.md        # Contient le lien vers le dataset 
-    │
-    ├── notebook/
-    │   └── notebook_dm.ipynb        # Notebook Jupyter pour l’analyse exploratoire et le data management
-    │
-    ├── streamlit_app/
-    │   └── streamlit_app.py # Application Streamlit principale
-    │
-    └── README.md            # Ce fichier
 
 ---
 
 ## ⚙️ Installation & environnement
 
-1. Cloner le dépôt (ou le récupérer depuis GitHub Classroom / compte du groupe)
-2. Créer un environnement virtuel Python (optionnel mais recommandé)  
-3. Installer les dépendances :
+### 1️⃣ Cloner le dépôt
 
-    pip install -r requirements.txt
+```bash
+git clone https://github.com/Haylize/Data-Management.git
+cd Data-Management/app_v2
 
----
+### Dataset (obligatoire)
 
-## ▶️ Lancer l’application Streamlit
+⚠️ Le jeu de données n’est pas inclus dans le dépôt (taille trop importante).
+Télécharger le dataset depuis Kaggle :
+https://www.kaggle.com/datasets/malaiarasugraj/global-health-statistics?resource=download
+Placer le fichier suivant dans le dossier :
+```bash
+app_v2/data/Global Health Statistics.csv
 
-Depuis la racine du projet :
+### Lancer l'application Streamlit : 
 
-    streamlit run app/streamlit_app.py
-
-L’application permet notamment :
-
-- de visualiser des statistiques descriptives
-- de filtrer les données (pays, maladies, années…)
-- d’afficher des graphiques interactifs
-- d’explorer les résultats de la partie Text Mining
-
----
-
+Depuis le dossier app_v2 :
+```bash
+streamlit run page_accueil.py
