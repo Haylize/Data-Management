@@ -4,7 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
-
+# Stopwords français de base
 DEFAULT_STOPWORDS_FR = {
     "le","la","les","un","une","des","de","du","au","aux","en","et","ou","où","que","qui",
     "dans","pour","par","avec","sans","sur","ce","cet","cette","ces","se","ses","son","sa",
@@ -16,12 +16,13 @@ DEFAULT_STOPWORDS_FR = {
 
 @st.cache_data(show_spinner=False)
 def load_text(path: str) -> str:
+    # Lecture du fichier texte une seule fois grâce au cache
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
 def preprocess_text(article: str) -> str:
-    # 1) minuscules
+    # 1) minuscules pour éviter les doublons (Santé / santé)
     text = article.lower()
 
     # 2) suppression ponctuation / caractères spéciaux (garde accents + apostrophe)
@@ -33,7 +34,9 @@ def preprocess_text(article: str) -> str:
 
 
 def tokenize_filter(text: str, stopwords: set[str], min_len: int = 3) -> list[str]:
+    # découpe le texte en mots à partir des espaces
     tokens = text.split()
+    # ce qu'on conserve uniquement
     clean_tokens = [w for w in tokens if (w not in stopwords and len(w) >= min_len)]
     return clean_tokens
 
@@ -53,12 +56,12 @@ def build_wordcloud(
         background_color=background,
         max_words=max_words,
         collocations=collocations,  # évite des bigrammes parfois bizarres
-    ).generate(text_for_wc)
+    ).generate(text_for_wc)  # calcul des fréquences et création du nuage
     return wc
 
 
 def wordcloud_page() -> None:
-    st.header("☁️ WordCloud — Article OMS")
+    st.header("WordCloud — Article OMS")
 
     # chemin
     TEXT_PATH = "data/article_oms.txt"
@@ -68,15 +71,15 @@ def wordcloud_page() -> None:
     except FileNotFoundError:
         st.error(f"Fichier introuvable : {TEXT_PATH}")
         st.stop()
-
-    with st.expander("🔎 Aperçu de l’article", expanded=False):
+    # Aperçu partiel de l’article
+    with st.expander("Aperçu de l’article", expanded=False):
         st.write(article[:1200] + ("..." if len(article) > 1200 else ""))
 
     # --- Prétraitement
     cleaned = preprocess_text(article)
 
     # --- Paramètres UI
-    st.sidebar.subheader("⚙️ WordCloud")
+    st.sidebar.subheader("WordCloud")
     min_len = st.sidebar.slider("Longueur minimale des mots", 2, 8, 3)
     max_words = st.sidebar.slider("Nombre max de mots", 50, 400, 200, step=25)
     background = st.sidebar.selectbox("Fond", ["white", "black"])
@@ -88,12 +91,15 @@ def wordcloud_page() -> None:
         placeholder="ex: santé, mondiale, rapport",
     )
 
+    # Fusion des stopwords par défaut avec ceux ajoutés par l’utilisateur
     stopwords = set(DEFAULT_STOPWORDS_FR)
     if extra_stopwords.strip():
         stopwords |= {w.strip().lower() for w in extra_stopwords.split(",") if w.strip()}
 
+    # Tokenisation + filtrage
     clean_tokens = tokenize_filter(cleaned, stopwords=stopwords, min_len=min_len)
-
+    
+    # Indicateurs pour visualiser l’impact du nettoyage
     col1, col2 = st.columns(2)
     col1.metric("Tokens bruts", len(cleaned.split()))
     col2.metric("Tokens nettoyés", len(clean_tokens))
@@ -113,13 +119,14 @@ def wordcloud_page() -> None:
         max_words=max_words,
         collocations=collocations,
     )
-
+    # Affichage
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
     st.pyplot(fig, use_container_width=True)
 
-    st.subheader("🧠 Analyse du nuage de mots")
+    # Interprétation
+    st.subheader("Analyse du nuage de mots")
 
     st.markdown(
         """
@@ -136,14 +143,14 @@ def wordcloud_page() -> None:
     )
 
 
-    # --- Download
+    # --- Téléchargement du WordCloud
     png_bytes = wc.to_image()
     # to_image() renvoie une PIL.Image -> on convertit en bytes
     import io
     buf = io.BytesIO()
     png_bytes.save(buf, format="PNG")
     st.download_button(
-        "📥 Télécharger le WordCloud (PNG)",
+        "Télécharger le WordCloud (PNG)",
         data=buf.getvalue(),
         file_name="wordcloud_oms.png",
         mime="image/png",
